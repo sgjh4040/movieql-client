@@ -4,6 +4,7 @@ import { HOME_PAGE } from "./queries";
 import styled from "styled-components";
 import Movie from "./Movie";
 
+
 const Container = styled.div`
     display:grid;
     grid-template-columns: repeat(3, 0.7fr);
@@ -12,7 +13,8 @@ const Container = styled.div`
 `
 
 const Home = () =>
-    <Container>
+    
+    <Container> 
         <Query query={HOME_PAGE}>{({ loading, data, error }) => {
             if (loading) return <span>loading</span>;
             if (error) return <span>something happened</span>;

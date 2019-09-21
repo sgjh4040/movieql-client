@@ -1,8 +1,9 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { MOVIE_DETAILS } from "./queries";
+import { MOVIE_DETAILS } from "../../queries";
 import styled from "styled-components";
-import Movie from "./Movie";
+import Movie from "../../Movie";
+
 
 const Container = styled.div`
     display:grid;
