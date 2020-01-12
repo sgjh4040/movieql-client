@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route } from "react-router-dom";
-import { ApolloProvider } from "react-apollo";
+// import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import client from "./apolloClient";
 import Home from "./Home";
 import Detail from "./Routes/Detail/Detail";
@@ -31,7 +32,7 @@ const GlobalStyle= createGlobalStyle`
 class App extends Component {
   render() {
     return (
-      <ApolloProvider client={client}>
+      <ApolloHooksProvider client={client}>
         <Router>
           <GlobalStyle/>
           <Header></Header>
@@ -42,7 +43,7 @@ class App extends Component {
           </main>
         </Router>
 
-      </ApolloProvider>
+      </ApolloHooksProvider>
     )
   }
 

@@ -6,13 +6,13 @@ const Container = styled.div`
     display:grid;
     grid-template-columns: repeat(3,1fr);
     justify-items: center;
-    background-color: #0074D9;
-    color: white;
+    background-color: #FFFFFF;
+    color: #333333;
     
 
 `
 const Category = styled.div`
-    font-size:30px;
+    font-size:15px;
     padding: 10px 0 ;
     font-weight: 600;
 `
