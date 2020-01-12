@@ -6,42 +6,35 @@ import client from "./apolloClient";
 import Home from "./Home";
 import Detail from "./Routes/Detail/Detail";
 import Drama from "./Routes/Drama/Drama";
-import {createGlobalStyle} from "styled-components";
-import reset from "styled-reset";
+import GlobalStyles from "./Styles/GlobalStyles";
+import Theme from "./Styles/Theme";
+import styled, { ThemeProvider } from "styled-components";
 import Header from './Components/Header/Header';
 
-const GlobalStyle= createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
-  ${reset};
-  body{
-    font-family: 'Nanum Gothic', sans-serif;
-    background-color: #ecf0f1;
-  }
-  a{
-      color:inherit;
-      text-decoration: none;
-  }
-  main {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-  }
-`
+const Wrapper = styled.div`
+  position: relative;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+  max-width: ${props => props.theme.maxWidth};
+`;
 
 
 class App extends Component {
   render() {
     return (
       <ApolloHooksProvider client={client}>
-        <Router>
-          <GlobalStyle/>
-          <Header></Header>
-          <main>
-            <Route exact={true} path={"/"} component={Home} />
-            <Route path={"/details/:movieId"} component={Detail} />
-            <Route path={"/drama"} component={Drama} />
-          </main>
-        </Router>
+        <ThemeProvider theme={Theme}>
+          <Router>
+              <GlobalStyles />
+              <Header></Header>
+              <Wrapper>
+                <Route exact={true} path={"/"} component={Home} />
+                <Route path={"/details/:movieId"} component={Detail} />
+                <Route path={"/drama"} component={Drama} />
+              </Wrapper>
+          </Router>
+        </ThemeProvider>
 
       </ApolloHooksProvider>
     )

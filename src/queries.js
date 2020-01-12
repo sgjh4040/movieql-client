@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-export const HOME_PAGE = gql`
+export const NOW_PLAY_MOVIE = gql`
     query{
-        movies(page:1){
+        nowPlayMovies(page:1){
         title
         id
         genre_ids
