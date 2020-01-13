@@ -45,6 +45,8 @@ const Home = () => {
                         overview={movie.overview}
                         title={movie.title}
                         rating={movie.vote_average}
+                        vote_average={movie.vote_average}
+                        release_date={movie.release_date}
                         />
                     ))}
                 </MoviesContainer>

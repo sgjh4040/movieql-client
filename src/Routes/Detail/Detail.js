@@ -1,5 +1,5 @@
 import React from "react";
-import { Query } from "react-apollo";
+import { useQuery } from 'react-apollo-hooks';
 import { MOVIE_DETAILS } from "../../queries";
 import styled from "styled-components";
 import Movie from "../../Movie";
@@ -38,57 +38,54 @@ const MovieContainer = styled.div`
 const Contents = styled.span`
     padding:15px;
 `
-
 const Detail = ({
     match: {
         params: { movieId }
     }
-}) => <Query query={MOVIE_DETAILS} variables={{ movieId: parseInt(movieId) }}>
-        {({ loading, error, data }) => {
+}) => {
+    const { data, loading,error } = useQuery(MOVIE_DETAILS, {
+        variables: {
+            movieId: parseInt(movieId)
+        }
+    })
 
-            if (loading) return "loading";
-            if (error) return "error";
-            console.log(data);
-            return (
-                <React.Fragment>
-                    <Container>
-                        <Image src={`https://image.tmdb.org/t/p/w500${data.movie.poster_path}`}>
+    if (loading) return "loading";
+    if (error) return "error";
+    return (
+        <React.Fragment>
+            <Container>
+                <Image src={`https://image.tmdb.org/t/p/w500${data.movie.poster_path}`}>
 
-                        </Image>
-                        <Contents>
-                            <Title>
-                                {data.movie.title}
-                            </Title>
-                            <Paragraph bold>
-                                {data.movie.vote_average}⭐️
+                </Image>
+                <Contents>
+                    <Title>
+                        {data.movie.title}
+                    </Title>
+                    <Paragraph bold>
+                        {data.movie.vote_average}⭐️
                             </Paragraph>
-                            <Paragraph>
-                                {data.movie.overview}
-                            </Paragraph>
+                    <Paragraph>
+                        {data.movie.overview}
+                    </Paragraph>
 
-                        </Contents>
-                    </Container>
-                    <Title>추천 영화</Title>
-                    <MovieContainer>
-                        {console.log(data)}
-                        {data.suggestions.map(movie=>(
-                            <Movie
-                                key={movie.id}
-                                id={movie.id}
-                                title={movie.title}
-                                poster={movie.poster_path}
-                                rating={movie.vote_average}
-                            >
+                </Contents>
+            </Container>
+            <Title>추천 영화</Title>
+            <MovieContainer>
+                {console.log(data)}
+                {data.suggestions.map(movie => (
+                    <Movie
+                        key={movie.id}
+                        id={movie.id}
+                        title={movie.title}
+                        poster={movie.poster_path}
+                        rating={movie.vote_average}
+                    >
 
-                            </Movie>
-                        ))}
-                    </MovieContainer>
-                </React.Fragment>
-            )
-        }}
-
-
-
-    </Query>
-
+                    </Movie>
+                ))}
+            </MovieContainer>
+        </React.Fragment>
+    )
+}
 export default Detail;

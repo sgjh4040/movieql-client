@@ -27,7 +27,7 @@ const Title = styled.span`
   font-weight:600;
 `;
 
-const Movie = ({index,id,title,overview,poster,rating})=>(
+const Movie = ({index,id,title,overview,poster,rating,vote_average,release_date})=>(
     <Link to={`/details/${id}`} >
         <Card background={`https://image.tmdb.org/t/p/w500${poster}`}>
             <Title>

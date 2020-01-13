@@ -9,6 +9,7 @@ export const NOW_PLAY_MOVIE = gql`
         overview
         poster_path
         vote_average
+        release_date
         }
     }
 
