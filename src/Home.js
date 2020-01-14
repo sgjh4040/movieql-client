@@ -6,9 +6,11 @@ import Movie from "./Components/Movie";
 import IconButton from 'material-ui/IconButton';
 
 const Wrapper = styled.div`
-    margin-top: 30px;
+    margin: 0 auto;
   display: block;
   min-height: 80vh;
+  max-width: 1000px;
+
 `;
 const Title = styled.h2`
     font-size: 24px;
@@ -23,12 +25,13 @@ const MoviesContainer = styled.div`
 
 
 const Home = () => {
+    const { data, loading } = useQuery(NOW_PLAY_MOVIE);
 
-    const {data,loading}= useQuery(NOW_PLAY_MOVIE);
-    
-    if(loading){
+
+
+    if (loading) {
         return <div>loading</div>
-    }else{
+    } else {
         console.log(data);
         return (
             <Wrapper>
@@ -36,21 +39,21 @@ const Home = () => {
                     인기 영화
                 </Title>
                 <MoviesContainer>
-                    {data.nowPlayMovies.map((movie, index)=>(
+                    {data.nowPlayMovies.map((movie, index) => (
                         <Movie
-                        key={index}
-                        index
-                        id={movie.id}
-                        poster={movie.poster_path}
-                        overview={movie.overview}
-                        title={movie.title}
-                        rating={movie.vote_average}
-                        vote_average={movie.vote_average}
-                        release_date={movie.release_date}
+                            key={index}
+                            index
+                            id={movie.id}
+                            poster={movie.poster_path}
+                            overview={movie.overview}
+                            title={movie.title}
+                            rating={movie.vote_average}
+                            vote_average={movie.vote_average}
+                            release_date={movie.release_date}
                         />
                     ))}
                 </MoviesContainer>
-                
+
 
             </Wrapper>
         )
@@ -59,7 +62,7 @@ const Home = () => {
 }
 
 // const Home = () =>
-    
+
 //     <Container> 
 //         <Query query={HOME_PAGE}>{({ loading, data, error }) => {
 //             if (loading) return <span>loading</span>;

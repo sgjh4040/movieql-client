@@ -13,10 +13,9 @@ import Header from './Components/Header/Header';
 
 const Wrapper = styled.div`
   position: relative;
-  margin: 0 auto;
-  max-width: 1000px;
+  margin: 40px auto;
   width: 100%;
-  max-width: ${props => props.theme.maxWidth};
+  /* max-width: ${props => props.theme.maxWidth}; */
 `;
 
 

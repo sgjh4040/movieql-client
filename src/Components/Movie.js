@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState,useEffect}  from "react";
 import PropType from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+
 
 const Card = styled.div`
   display: flex;
@@ -64,22 +65,23 @@ const DetailBox = styled(Link)`
     bottom: 0;
     left: 0;
     padding: 16px;
+    color:#4d4d4d;
 `;
 
 
 const progressStyle = buildStyles({
 
   // Rotation of path and trail, in number of turns (0-1)
-  rotation: 0.25,
+  rotation: 0,
 
   // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-  strokeLinecap: 'butt',
+  strokeLinecap: 'round',
 
   // Text size
   textSize: '30px',
 
   // How long animation takes to go from one percentage to another, in seconds
-  pathTransitionDuration: 0.5,
+  pathTransitionDuration: 2,
 
   // Can specify path transition in more detail, or remove it entirely
   // pathTransition: 'none',
@@ -91,14 +93,22 @@ const progressStyle = buildStyles({
   backgroundColor: '#0D1C21',
 })
 
-const Movie = ({ index, id, title, overview, poster, rating, vote_average, release_date }) => (
+const Movie = ({ index, id, title, overview, poster, rating, vote_average, release_date }) => {
+       
+       const [percent,setPercent] = useState(0);
 
+       useEffect(()=>{
+         setPercent(vote_average);
+       })
+
+  return (
     <Card key={index}>
       <MovieImage background={`https://image.tmdb.org/t/p/w500${poster}`} />
       <IntroBox>
         <IntroHeader>
           <div style={{ width: '38px' }}>
-            <CircularProgressbar styles={progressStyle} background={true} value={vote_average} maxValue={10} text={`${vote_average * 10}%`} />
+            
+            <CircularProgressbar styles={progressStyle} background={true} value={percent} maxValue={10} text={`${vote_average * 10}%`} />
           </div>
           <div style={{ width: '100%', marginLeft: '10px' }}>
             <Title>
@@ -117,7 +127,8 @@ const Movie = ({ index, id, title, overview, poster, rating, vote_average, relea
         </DetailBox>
       </IntroBox>
     </Card>
-)
+  )
+}
 Movie.PropType = {
   id: PropType.number.isRequired,
   title: PropType.string.isRequired,

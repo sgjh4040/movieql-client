@@ -35,6 +35,7 @@ export const MOVIE_DETAILS = gql`
             overview
             poster_path
             vote_average
+            release_date
         }
         suggestions(id:$movieId){
             title
