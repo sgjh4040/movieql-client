@@ -99,7 +99,7 @@ const Movie = ({ index, id, title, overview, poster, rating, vote_average, relea
 
        useEffect(()=>{
          setPercent(vote_average);
-       })
+       },[])
 
   return (
     <Card key={index}>

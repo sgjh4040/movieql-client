@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useQuery } from 'react-apollo-hooks';
 import { NOW_PLAY_MOVIE, MOVIES } from "./queries";
 import styled from "styled-components";
 import Movie from "./Components/Movie";
 import IconButton from 'material-ui/IconButton';
+import Select from '@material-ui/core/Select';
 
 const Wrapper = styled.div`
     margin: 0 auto;
@@ -25,17 +26,37 @@ const MoviesContainer = styled.div`
 
 
 const Home = () => {
-    const [page,setPage] = useState(1);
+    const [page, setPage] = useState(1);
+    const [title,setTitle] = useState('현재 상영작')
     const [category, setCategory] = useState('now_playing');
-    const [language, setLanguage] =useState('ko-kr')
+    const [language, setLanguage] = useState('ko-kr')
 
-    const { data, loading } = useQuery(MOVIES,{
-        variables:{
+    const { data, loading } = useQuery(MOVIES, {
+        variables: {
             page,
             category,
             language
         }
     });
+
+    const handleChange = (e) => {
+        console.log("click")
+        setCategory(e.target.value);
+        switch (e.target.value){
+            case 'popular':
+                setTitle("인기작");
+                break;
+            case 'top_rated':
+                setTitle("평가굿");
+                break;
+            case 'upcoming':
+                    setTitle("상영 예정작");
+                    break;
+            default:
+                    setTitle("상영중");
+                        
+        }
+    }
 
 
 
@@ -46,8 +67,19 @@ const Home = () => {
         return (
             <Wrapper>
                 <Title>
-                    인기 영화
+                    {title}
                 </Title>
+                <div style={{textAlign:"end"}}>
+                <Select
+                    value={category}
+                    onChange={handleChange}>
+                    <option value="now_playing">상영중</option>
+                    <option value="popular">인기작</option>
+                    <option value="top_rated">평가굿</option>
+                    <option value="upcoming">상영 예정작</option>
+                </Select>
+                </div>
+
                 <MoviesContainer>
                     {data.movies.map((movie, index) => (
                         <Movie
