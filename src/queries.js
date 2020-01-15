@@ -1,5 +1,21 @@
 import gql from "graphql-tag";
 
+
+
+export const MOVIES = gql`
+    query movies($page:Int,$language:String,$category:String){
+        movies(page:$page, language:$language, category: $category){
+            title
+            id
+            genre_ids
+            overview
+            poster_path
+            vote_average
+            release_date
+        }
+    }
+`
+
 export const NOW_PLAY_MOVIE = gql`
     query{
         nowPlayMovies(page:1){
@@ -13,7 +29,7 @@ export const NOW_PLAY_MOVIE = gql`
         }
     }
 
-`
+`;
 export const DRAMA_PAGE = gql`
     query{
         movies(page:1){
@@ -25,7 +41,7 @@ export const DRAMA_PAGE = gql`
         vote_average
         }
     }
-`
+`;
 export const MOVIE_DETAILS = gql`
     query getMovieDetail($movieId:Int!){
         movie(id:$movieId){
@@ -36,6 +52,7 @@ export const MOVIE_DETAILS = gql`
             poster_path
             vote_average
             release_date
+            backdrop_path
         }
         suggestions(id:$movieId){
             title
@@ -44,6 +61,14 @@ export const MOVIE_DETAILS = gql`
             overview
             poster_path
             vote_average
+        }
+        credits(id:$movieId){
+            id
+            profile_path
+            character
+            gender
+            name
+
         }
     }
 `

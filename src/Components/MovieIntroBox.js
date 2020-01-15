@@ -4,31 +4,51 @@ import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
 const Container = styled.div`
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
     padding-top: 40px;
     padding-bottom: 40px;
     z-index: 0;
     background: transparent;
+    @media (min-width: 576px){
+        width: 100%;
+    }
+    @media (min-width: 768px){
+        width: 1000px;
+        
+    }
 `;
 
 const Section = styled.section`
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
+@media (min-width: 576px){
+        flex-direction: row;
+    }
 `;
 const Image = styled.img`
     display: block;
     border-radius: 2px;
-    width: 300px;
-    height: 450px;
+    width: 200px;
+    height: 300px;
     border-width: 0px;
     outline: none;
+    margin-bottom:20px;
+    @media (min-width: 576px){
+        width: 300px;
+        height: 450px;
+        margin-bottom:0;
+    }
 `;
 const IntroBox = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 40px;
+    padding-right:40px;
     width:100%;
+    @media (min-width: 576px){
+
+    }
 `;
 const Title = styled.h2`
     margin: 0;

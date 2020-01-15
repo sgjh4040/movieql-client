@@ -6,9 +6,20 @@ import Movie from "../../Movie";
 import MovieIntroBox from "../../Components/MovieIntroBox";
 
 const Wrapper = styled.div`
-background-color:#333333;
-  display: block;
-  min-height: 80vh;
+background-image : url(${props => `https://image.tmdb.org/t/p/w500${props.url}`});
+    display: block;
+    min-height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    z-index:-1;
+`;
+const WrapperBack = styled.div`
+    width:100%;
+    height:100%;
+    background-color: rgba( 0, 0, 0, 0.7);
+    min-height: 80vh;
+    
 `;
 
 const Container = styled.div`
@@ -21,7 +32,50 @@ const Card = styled.div`
     background-color: white;
     border-radius: 7px;
     width:100%;
-`
+`;
+
+const FlexBox = styled.div`
+    display:flex;
+    flex-direction: row;
+`;
+
+const CreditContainer = styled.ol`
+    list-style-type: none;
+/* list-style-position: inside; */
+   margin: 0;
+   padding: 0;
+  display: flex;
+  overflow:scroll;
+`;
+const CreditBox = styled.li`
+    border: 1px solid #e3e3e3;
+    padding-bottom: 10px;
+      width: 140px;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin-right: 10px;
+`;
+const NameBox = styled.p`
+    padding: 10px 10px 0 10px;
+  font-size: 1em;
+    line-height: 1.4em;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+const Name = styled.a`
+    font-weight: bold;
+    color: #000;
+`;
+const Charactor = styled.p`
+    padding: 0 10px;
+  font-size: 0.9em;
+  line-height: 1.4em;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
 const Image = Card.withComponent("img");
 
 const Title = styled.h1`
@@ -44,12 +98,15 @@ const MovieContainer = styled.div`
 const Contents = styled.span`
     padding:15px;
 `
+
+
+
 const Detail = ({
     match: {
         params: { movieId }
     }
 }) => {
-    const { data, loading,error } = useQuery(MOVIE_DETAILS, {
+    const { data, loading, error } = useQuery(MOVIE_DETAILS, {
         variables: {
             movieId: parseInt(movieId)
         }
@@ -59,9 +116,42 @@ const Detail = ({
     if (error) return "error";
 
     return (
-        <Wrapper>
-            <MovieIntroBox data={data}/>
-        </Wrapper>
+        <>
+            <Wrapper url={data.movie.backdrop_path}>
+                <WrapperBack>
+                    <MovieIntroBox data={data} />
+                </WrapperBack>
+            </Wrapper>
+
+            <FlexBox>
+                <div style={{ width:'70%'}}>
+                    <CreditContainer>
+                        {data.credits.map(credit => (
+                            <CreditBox>
+                                <a>
+                                    <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${credit.profile_path}`}>
+                                    </img>
+                                </a>
+                                <NameBox>
+                                    <Name>
+                                        {credit.name}
+                                    </Name>
+                                </NameBox>
+                                <Charactor>
+                                    {credit.charactor}
+                                </Charactor>
+                            </CreditBox>
+                        ))}
+                    </CreditContainer>
+                </div>
+                <div style={{ width:'30%', backgroundColor:'#F0F0F0' }}>
+data 추가
+                </div>
+            </FlexBox>
+
+
+
+        </>
     )
     // return (
     //     <React.Fragment>
