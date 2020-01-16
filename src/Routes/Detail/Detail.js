@@ -148,6 +148,7 @@ const Detail = ({
         params: { movieId }
     }
 }) => {
+   
     const { data, loading, error } = useQuery(MOVIE_DETAILS, {
         variables: {
             movieId: parseInt(movieId)
@@ -155,8 +156,13 @@ const Detail = ({
     });
     const classes = useStyles();
 
+  
+    
     if (loading) return "loading";
     if (error) return "error";
+
+    
+
 
     const topCredits = data.credits.slice(0, 5);
 

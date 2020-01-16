@@ -112,8 +112,9 @@ const MovieIntroBox = ({data}) => {
     const [percent,setPercent] = useState(0);
 
        useEffect(()=>{
-         setPercent(data.movie.vote_average);
-       })
+           console.log("useEffect")
+           setTimeout(()=> setPercent(data.movie.vote_average),100);
+       },[percent])
     return (
         <Container>
             <Section>
