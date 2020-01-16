@@ -6,6 +6,9 @@ import Movie from "../../Movie";
 import MovieIntroBox from "../../Components/MovieIntroBox";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { addComma } from "../../util";
+import Loader from "../../Components/loader";
+import RecommendBox from "../../Components/RecommendBox";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -56,7 +59,6 @@ const Column = styled.div`
     display:inherit;
     flex-direction: column;
     width:100%;
-    padding-top:40px;
     margin-left: 1%;
     margin-right: 50px;
     @media (min-width: 576px){
@@ -69,6 +71,7 @@ const Column = styled.div`
     }
 `;
 const Title = styled.h1`
+    padding-top:40px;
     font-size: 24px;
     margin-bottom: 20px;
     
@@ -142,6 +145,13 @@ const Label = styled.div`
 const GenreButton = styled(Button)`
     margin-right: 5px;
 `;
+const RecommendContainer = styled.div`
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding-bottom: 16px;
+`;
 
 const Detail = ({
     match: {
@@ -158,7 +168,7 @@ const Detail = ({
 
   
     
-    if (loading) return "loading";
+    if (loading) return <Loader/>
     if (error) return "error";
 
     
@@ -198,6 +208,13 @@ const Detail = ({
                         ))}
                     </CreditContainer>
                     <UnderLine />
+                    <Title>
+                        추천 작품
+                </Title>
+                    <RecommendContainer>
+                        {data.suggestions.map(movie => <RecommendBox {...movie}/>)}
+                    </RecommendContainer>
+                    
                 </Column>
                 <GreyColumn>
                     <Wrap>
@@ -228,13 +245,13 @@ const Detail = ({
                         <Label>
                             제작비
                         </Label>
-                        $55,000,000.00
+                        ${addComma(data.movie.budget)}
                     </Wrap>
                     <Wrap>
                         <Label>
                             수익
                         </Label>
-                        $1,143,000,000.00
+                        ${addComma(data.movie.revenue)}
                     </Wrap>
                     <Wrap>
                         <Label>
@@ -246,13 +263,8 @@ const Detail = ({
                         <Label>
                             키워드
                         </Label>
-                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
-                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
-                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
-                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
-                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
+                        {data.keywords.map(keyword => <GenreButton className={classes.button} size="small" variant="outlined">{keyword.name}</GenreButton>)}
                     </Wrap>
-
                 </GreyColumn>
             </FlexBox>
 

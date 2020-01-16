@@ -56,6 +56,8 @@ export const MOVIE_DETAILS = gql`
             original_title
             status
             runtime
+            budget
+            revenue
             genres{
                     id
                     name
@@ -69,6 +71,8 @@ export const MOVIE_DETAILS = gql`
             overview
             poster_path
             vote_average
+            backdrop_path
+            release_date
         }
         credits(id:$movieId){
             id
@@ -76,7 +80,10 @@ export const MOVIE_DETAILS = gql`
             character
             gender
             name
-
+        }
+        keywords(id:$movieId){
+            id
+            name
         }
     }
 `

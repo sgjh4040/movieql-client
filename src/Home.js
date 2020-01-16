@@ -5,6 +5,9 @@ import styled from "styled-components";
 import Movie from "./Components/Movie";
 import IconButton from 'material-ui/IconButton';
 import Select from '@material-ui/core/Select';
+import Loader from "./Components/loader";
+
+
 
 const Wrapper = styled.div`
     margin: 0 auto;
@@ -61,7 +64,7 @@ const Home = () => {
 
 
     if (loading) {
-        return <div>loading</div>
+        return <Loader/>
     } else {
         console.log(data);
         return (
