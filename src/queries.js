@@ -53,6 +53,14 @@ export const MOVIE_DETAILS = gql`
             vote_average
             release_date
             backdrop_path
+            original_title
+            status
+            runtime
+            genres{
+                    id
+                    name
+                }
+
         }
         suggestions(id:$movieId){
             title

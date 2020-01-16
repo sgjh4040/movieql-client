@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import useInput from "../../Hooks/useInput";
 // import { Logo } from "../Icons";
+import logo from "../../assets/icons/logo.png";
 
 
 const HeaderBox = styled.header`
@@ -17,9 +19,18 @@ const Container = styled.div`
     display:flex;
     align-items: center;
     background-color: ${props => props.theme.darkGreenColor};
-    padding: 10px 95px;
-    height:110px;
+    padding: 10px;
+    height:60px;
     width:100%;
+    @media (min-width: 576px){
+        padding: 10px 95px;
+        height:110px;
+    }
+`;
+const Logo = styled.img`
+    width:80px;
+    height: 80px;
+    margin-right:20px;
 `;
 
 const CategoryBox = styled.div`
@@ -53,9 +64,26 @@ const SearchInput = styled.input`
 
 `;
 
-const Header = () =>
-    <HeaderBox>
+const Header = () =>{
+    const term = useInput('');
+
+    const onKeyPress = async event =>{
+        const { which } = event;
+        if(which === 13){
+            event.preventDefault();
+            try{
+                console.log(term.value);
+            }catch{
+
+            }
+        }
+    }
+
+
+    return (
+        <HeaderBox>
         <Container>
+            <Logo src={logo}/>
             <CategoryBox>
                 <Link to={`/`}>
                     <Category>
@@ -75,9 +103,12 @@ const Header = () =>
             </CategoryBox>
         </Container>
         <SearchBox>
-            <SearchInput placeholder={'영화, TV 프로그램, 인물 검색'}/>
+            <SearchInput placeholder={'영화, TV 프로그램, 인물 검색'} {...term} onKeyPress={onKeyPress}/>
         </SearchBox>
     </HeaderBox>
+    )
+}
+    
 
 
 export default Header;

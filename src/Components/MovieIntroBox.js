@@ -77,7 +77,7 @@ const H2 = styled.h2`
     margin-bottom: 10px;
 `;
 const Overview = styled.div`
-    font-size: 1em;
+    font-size: 1.2em;
     line-height: 1.4em;
 
 `

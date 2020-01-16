@@ -71,6 +71,7 @@ const Home = () => {
                 </Title>
                 <div style={{textAlign:"end"}}>
                 <Select
+                    native
                     value={category}
                     onChange={handleChange}>
                     <option value="now_playing">상영중</option>

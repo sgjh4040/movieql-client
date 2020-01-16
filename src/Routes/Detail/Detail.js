@@ -4,6 +4,15 @@ import { MOVIE_DETAILS } from "../../queries";
 import styled from "styled-components";
 import Movie from "../../Movie";
 import MovieIntroBox from "../../Components/MovieIntroBox";
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    button: {
+        marginRight: theme.spacing(1),
+        marginBottom: theme.spacing(1)
+    },
+}));
 
 const Wrapper = styled.div`
 background-image : url(${props => `https://image.tmdb.org/t/p/w500${props.url}`});
@@ -22,11 +31,6 @@ const WrapperBack = styled.div`
     
 `;
 
-const Container = styled.div`
-    display:grid;
-    grid-template-columns: 1fr 4fr;
-    margin-bottom: 40px;
-`
 const Card = styled.div`
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     background-color: white;
@@ -34,26 +38,70 @@ const Card = styled.div`
     width:100%;
 `;
 
+const UnderLine = styled.div`
+    border-bottom:1px solid #D7D7D7;
+`;
+
 const FlexBox = styled.div`
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
+    @media (min-width: 576px){
+        flex-direction: row;
+    }
+    @media (min-width: 768px){
+        flex-direction: row;
+    }
+`;
+const Column = styled.div`
+    display:inherit;
+    flex-direction: column;
+    width:100%;
+    padding-top:40px;
+    margin-left: 1%;
+    margin-right: 50px;
+    @media (min-width: 576px){
+        width:70%;
+        margin-left: 2%;
+    }
+    @media (min-width: 768px){
+        width:70%;
+        margin-left: 5%;
+    }
+`;
+const Title = styled.h1`
+    font-size: 24px;
+    margin-bottom: 20px;
+    
+`
+const GreyColumn = styled.div`
+    width: 100%;
+    padding: 10px;
+    padding-top:40px;
+    background-color:#F0F0F0;
+    @media (min-width: 576px){
+        width: 30%;
+    }
+    @media (min-width: 768px){
+        width: 30%;
+    }
 `;
 
 const CreditContainer = styled.ol`
     list-style-type: none;
-/* list-style-position: inside; */
-   margin: 0;
-   padding: 0;
-  display: flex;
-  overflow:scroll;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    overflow:scroll;
+    margin-bottom: 30px;
 `;
 const CreditBox = styled.li`
     border: 1px solid #e3e3e3;
     padding-bottom: 10px;
-      width: 140px;
+    width: 140px;
     background-color: #fff;
     box-sizing: border-box;
     margin-right: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 const NameBox = styled.p`
     padding: 10px 10px 0 10px;
@@ -75,31 +123,25 @@ const Charactor = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
 `;
-
-const Image = Card.withComponent("img");
-
-const Title = styled.h1`
-    font-size: 24px;
-    margin-bottom: 10px;    
-`
-const Paragraph = styled.span`
-  margin-bottom: 10px;
-  display: block;
-  font-weight: ${props => (props.bold ? "500" : "400")};
-  font-size: 20px;
+const Wrap = styled.div`
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 15px;
+    @media (min-width: 576px){
+        font-size: 1.1rem;
+    }
 `;
-const MovieContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 0.7fr);
-  flex-wrap: wrap;
-  justify-items: center;
-  margin-top: 50px;
+const Label = styled.div`
+    font-size: 1.2rem;
+    margin-bottom:10px;
+    font-weight:700;
+    @media (min-width: 576px){
+        font-size: 1.3rem;
+    }
 `;
-const Contents = styled.span`
-    padding:15px;
-`
-
-
+const GenreButton = styled(Button)`
+    margin-right: 5px;
+`;
 
 const Detail = ({
     match: {
@@ -110,10 +152,13 @@ const Detail = ({
         variables: {
             movieId: parseInt(movieId)
         }
-    })
+    });
+    const classes = useStyles();
 
     if (loading) return "loading";
     if (error) return "error";
+
+    const topCredits = data.credits.slice(0, 5);
 
     return (
         <>
@@ -124,9 +169,12 @@ const Detail = ({
             </Wrapper>
 
             <FlexBox>
-                <div style={{ width:'70%'}}>
+                <Column >
+                    <Title>
+                        주요 출연진
+                </Title>
                     <CreditContainer>
-                        {data.credits.map(credit => (
+                        {topCredits.map(credit => (
                             <CreditBox>
                                 <a>
                                     <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${credit.profile_path}`}>
@@ -143,51 +191,68 @@ const Detail = ({
                             </CreditBox>
                         ))}
                     </CreditContainer>
-                </div>
-                <div style={{ width:'30%', backgroundColor:'#F0F0F0' }}>
-data 추가
-                </div>
+                    <UnderLine />
+                </Column>
+                <GreyColumn>
+                    <Wrap>
+                        <Label>
+                            원재
+                        </Label>
+                        {data.movie.original_title}
+                    </Wrap>
+                    <Wrap>
+                        <Label>
+                            상태
+                        </Label>
+                        {data.movie.status}
+                    </Wrap>
+                    <Wrap>
+                        <Label>
+                            원어
+                        </Label>
+                        영어
+                    </Wrap>
+                    <Wrap>
+                        <Label>
+                            상영시간
+                        </Label>
+                        {data.movie.runtime} 분
+                    </Wrap>
+                    <Wrap>
+                        <Label>
+                            제작비
+                        </Label>
+                        $55,000,000.00
+                    </Wrap>
+                    <Wrap>
+                        <Label>
+                            수익
+                        </Label>
+                        $1,143,000,000.00
+                    </Wrap>
+                    <Wrap>
+                        <Label>
+                            장르
+                        </Label>
+                        {data.movie.genres.map(genre => <GenreButton className={classes.button} size="small" variant="outlined">{genre.name}</GenreButton>)}
+                    </Wrap>
+                    <Wrap>
+                        <Label>
+                            키워드
+                        </Label>
+                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
+                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
+                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
+                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
+                        <GenreButton className={classes.button} size="small" variant="outlined">street gang</GenreButton>
+                    </Wrap>
+
+                </GreyColumn>
             </FlexBox>
 
 
 
         </>
     )
-    // return (
-    //     <React.Fragment>
-    //         <Container>
-    //             <Image src={`https://image.tmdb.org/t/p/w500${data.movie.poster_path}`}>
-
-    //             </Image>
-    //             <Contents>
-    //                 <Title>
-    //                     {data.movie.title}
-    //                 </Title>
-    //                 <Paragraph bold>
-    //                     {data.movie.vote_average}⭐️
-    //                         </Paragraph>
-    //                 <Paragraph>
-    //                     {data.movie.overview}
-    //                 </Paragraph>
-
-    //             </Contents>
-    //         </Container>
-    //         <Title>추천 영화</Title>
-    //         <MovieContainer>
-    //             {console.log(data)}
-    //             {data.suggestions.map(movie => (
-    //                 <Movie
-    //                     key={movie.id}
-    //                     id={movie.id}
-    //                     title={movie.title}
-    //                     poster={movie.poster_path}
-    //                     rating={movie.vote_average}
-    //                 >
-
-    //                 </Movie>
-    //             ))}
-    //         </MovieContainer>
-    //     </React.Fragment>
-    // )
 }
 export default Detail;
