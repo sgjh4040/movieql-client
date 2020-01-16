@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b38ed0786f279260b531ee1e21489c0d",
+    "revision": "6fc8dd58a6eedf48b6b7019541a087aa",
     "url": "/movieql-client/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/movieql-client/static/js/2.29534a40.chunk.js"
   },
   {
-    "revision": "e420fa198b0386b583f9",
-    "url": "/movieql-client/static/js/main.5aaea875.chunk.js"
+    "revision": "fd26fa1e563f281fb29a",
+    "url": "/movieql-client/static/js/main.e48fa8db.chunk.js"
   },
   {
     "revision": "20d09602c1b46f40fe73",
