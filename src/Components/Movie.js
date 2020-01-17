@@ -2,6 +2,7 @@ import React, {useState,useEffect}  from "react";
 import PropType from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import noImage from "../assets/icons/noimage.jpg";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -119,7 +120,9 @@ const Movie = ({from, index, id, title, overview, poster, rating, vote_average, 
 
   return (
     <Card key={index}>
-      <MovieImage background={`https://image.tmdb.org/t/p/w500${poster}`} />
+      {poster ? <MovieImage background={`https://image.tmdb.org/t/p/w500${poster}`} />
+      : <MovieImage background={noImage}/>}
+      
       <IntroBox>
         <IntroHeader>
           <div style={{ width: '38px' }}>

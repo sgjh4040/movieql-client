@@ -6,6 +6,8 @@ import Movie from "./Components/Movie";
 import IconButton from 'material-ui/IconButton';
 import Select from '@material-ui/core/Select';
 import Loader from "./Components/loader";
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 
 
 
@@ -27,12 +29,19 @@ const MoviesContainer = styled.div`
     justify-content: space-between;
 `;
 
+const PageContainer = styled.div`
+    display:flex;
+    justify-content: center;
+    margin-top: 30px;
+`;
+
 
 const Home = () => {
     const [page, setPage] = useState(1);
     const [title,setTitle] = useState('현재 상영작');
     const [category, setCategory] = useState('now_playing');
     const [language, setLanguage] = useState('ko-kr');
+    
 
     const { data, loading } = useQuery(MOVIES, {
         variables: {
@@ -41,6 +50,11 @@ const Home = () => {
             language
         }
     });
+
+    const handleChangePage= (pageNumber) => {
+        console.log(`active page is ${pageNumber}`);
+        setPage(pageNumber);
+      }
 
     const handleChange = (e) => {
         console.log("click")
@@ -60,6 +74,15 @@ const Home = () => {
                         
         }
     }
+    const itemRender = (current, type, element) => {
+        if (type === 'page') {
+            
+          return <div onClick={()=>handleChangePage(current) }>{current}</div>;
+        }
+        console.log(element);
+        return element;
+      };
+      
 
 
 
@@ -85,7 +108,7 @@ const Home = () => {
                 </div>
 
                 <MoviesContainer>
-                    {data.movies.map((movie, index) => (
+                    {data.movies.results.map((movie, index) => (
                         <Movie
                             from="movie"
                             key={index}
@@ -100,8 +123,10 @@ const Home = () => {
                         />
                     ))}
                 </MoviesContainer>
-
-
+                
+                <PageContainer>
+                    <Pagination current={page}  total={data.movies.total_results} pageSize={20} itemRender={itemRender} />
+                </PageContainer>
             </Wrapper>
         )
 

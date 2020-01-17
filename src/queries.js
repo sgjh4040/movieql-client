@@ -5,13 +5,18 @@ import gql from "graphql-tag";
 export const MOVIES = gql`
     query movies($page:Int,$language:String,$category:String){
         movies(page:$page, language:$language, category: $category){
-            title
-            id
-            genre_ids
-            overview
-            poster_path
-            vote_average
-            release_date
+            page
+            total_pages
+            total_results
+            results{
+                title
+                id
+                genre_ids
+                overview
+                poster_path
+                vote_average
+                release_date
+            }
         }
     }
 `
@@ -90,12 +95,17 @@ export const MOVIE_DETAILS = gql`
 export const TVs = gql`
     query tvs($page:Int,$language:String,$category:String){
         tvs(page:$page, language:$language, category: $category){
-            id
-            name
-            overview
-            vote_average
-            poster_path
-            first_air_date
+            page
+            total_pages
+            total_results
+            results{
+                id
+                name
+                overview
+                vote_average
+                poster_path
+                first_air_date
+            }
         }
     }
 `;
