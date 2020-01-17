@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.js": "/movieql-client/static/js/main.6187c246.chunk.js",
-    "main.js.map": "/movieql-client/static/js/main.6187c246.chunk.js.map",
+    "main.js": "/movieql-client/static/js/main.07bbed12.chunk.js",
+    "main.js.map": "/movieql-client/static/js/main.07bbed12.chunk.js.map",
     "runtime-main.js": "/movieql-client/static/js/runtime-main.c3a41de3.js",
     "runtime-main.js.map": "/movieql-client/static/js/runtime-main.c3a41de3.js.map",
-    "static/css/2.09ae8418.chunk.css": "/movieql-client/static/css/2.09ae8418.chunk.css",
-    "static/js/2.5d572d70.chunk.js": "/movieql-client/static/js/2.5d572d70.chunk.js",
-    "static/js/2.5d572d70.chunk.js.map": "/movieql-client/static/js/2.5d572d70.chunk.js.map",
+    "static/css/2.3fbfde7e.chunk.css": "/movieql-client/static/css/2.3fbfde7e.chunk.css",
+    "static/js/2.07e5c47c.chunk.js": "/movieql-client/static/js/2.07e5c47c.chunk.js",
+    "static/js/2.07e5c47c.chunk.js.map": "/movieql-client/static/js/2.07e5c47c.chunk.js.map",
     "index.html": "/movieql-client/index.html",
-    "precache-manifest.236bbdbc9149af9c062d97d20cb2c582.js": "/movieql-client/precache-manifest.236bbdbc9149af9c062d97d20cb2c582.js",
+    "precache-manifest.ee96cde0df1169b3806cc887052c6862.js": "/movieql-client/precache-manifest.ee96cde0df1169b3806cc887052c6862.js",
     "service-worker.js": "/movieql-client/service-worker.js",
-    "static/css/2.09ae8418.chunk.css.map": "/movieql-client/static/css/2.09ae8418.chunk.css.map",
+    "static/css/2.3fbfde7e.chunk.css.map": "/movieql-client/static/css/2.3fbfde7e.chunk.css.map",
     "static/media/logo.png": "/movieql-client/static/media/logo.c2fdb0f3.png"
   }
 }
