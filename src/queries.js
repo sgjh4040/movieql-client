@@ -130,7 +130,7 @@ export const TV_DETAILS = gql`
             backdrop_path
             first_air_date
         }
-        keywords(id:$tvId){
+        tvKeywords(id:$tvId,language:$language){
             id
             name
         }

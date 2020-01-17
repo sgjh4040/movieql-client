@@ -243,7 +243,7 @@ const Detail = ({
                         <Label>
                             키워드
                         </Label>
-                        {data.keywords.map(keyword => <GenreButton key={keyword.id} className={classes.button} size="small" variant="outlined">{keyword.name}</GenreButton>)}
+                        {data.tvKeywords.map(keyword => <GenreButton key={keyword.id} className={classes.button} size="small" variant="outlined">{keyword.name}</GenreButton>)}
                     </Wrap>
                 </GreyColumn>
             </FlexBox>
