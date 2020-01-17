@@ -93,9 +93,25 @@ const progressStyle = buildStyles({
   backgroundColor: '#0D1C21',
 })
 
-const Movie = ({ index, id, title, overview, poster, rating, vote_average, release_date }) => {
+const Movie = ({from, index, id, title, overview, poster, rating, vote_average, release_date }) => {
        
        const [percent,setPercent] = useState(0);
+
+       const goTopage = from => {
+         if(from==="movie"){
+           return (
+            <DetailBox to={`/details/${id}`}>
+            더보기
+          </DetailBox>
+           )
+         }else if(from === "tv"){
+           return(
+            <DetailBox to={`/tv/${id}`}>
+            더보기
+          </DetailBox>
+           )
+         }
+       }
 
        useEffect(()=>{
          setPercent(vote_average);
@@ -122,9 +138,7 @@ const Movie = ({ index, id, title, overview, poster, rating, vote_average, relea
         <Overview>
           {overview}
         </Overview>
-        <DetailBox to={`/details/${id}`}>
-          더보기
-        </DetailBox>
+        {goTopage(from)}
       </IntroBox>
     </Card>
   )

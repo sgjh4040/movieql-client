@@ -86,4 +86,77 @@ export const MOVIE_DETAILS = gql`
             name
         }
     }
-`
+`;
+export const TVs = gql`
+    query tvs($page:Int,$language:String,$category:String){
+        tvs(page:$page, language:$language, category: $category){
+            id
+            name
+            overview
+            vote_average
+            poster_path
+            first_air_date
+        }
+    }
+`;
+export const TV_DETAILS = gql`
+    query Tv($tvId:Int!,$language:String){
+        tv(id:$tvId, language:$language){
+            name
+            id
+            overview
+            poster_path
+            vote_average
+            first_air_date
+            backdrop_path
+            original_name
+            status
+            genres{
+                    id
+                    name
+                }
+        }
+        tvCredits(id:$tvId, language:$language){
+            id
+            profile_path
+            character
+            gender
+            name
+        }
+        tvSuggestions(id:$tvId, language:$language){
+            name
+            id
+            vote_average
+            backdrop_path
+            first_air_date
+        }
+        keywords(id:$tvId){
+            id
+            name
+        }
+    }
+`;
+
+export const PERSON_DETAIL = gql`
+    query person($personId:Int!,$language:String){
+        person(id:$personId, language:$language){
+            id
+            birthday
+            biography
+            known_for_department
+            place_of_birth
+            homepage
+            name
+            gender
+            order
+            profile_path
+
+        }
+        personTvCredits(id:$personId, language:$language){
+            id
+        }
+        personMovieCredits(id:$personId, language:$language){
+            id
+        }
+    }
+`;

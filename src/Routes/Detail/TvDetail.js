@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { useQuery } from 'react-apollo-hooks';
-import { MOVIE_DETAILS } from "../../queries";
+import { TV_DETAILS } from "../../queries";
 import styled from "styled-components";
-import Movie from "../../Movie";
 import MovieIntroBox from "../../Components/MovieIntroBox";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -155,28 +154,29 @@ const RecommendContainer = styled.div`
 
 const Detail = ({
     match: {
-        params: { movieId }
+        params: { tvId }
     }
 }) => {
+    const [language, setLanguage] = useState('ko-kr')
    
-    const { data, loading, error } = useQuery(MOVIE_DETAILS, {
+    const { data, loading, error } = useQuery(TV_DETAILS, {
         variables: {
-            movieId: parseInt(movieId)
+            tvId: parseInt(tvId),
+            language
         }
     });
     const classes = useStyles();
+    if(loading) return <Loader/>
+    if (error) return "error";
+    console.log(data);
+    const topCredits = data.tvCredits.slice(0, 5);
 
   
-    
-    if (loading) return <Loader/>
-    if (error) return "error";
-    const topCredits = data.credits.slice(0, 5);
-
     return (
         <>
-            <Wrapper url={data.movie.backdrop_path}>
+            <Wrapper url={data.tv.backdrop_path}>
                 <WrapperBack>
-                    <MovieIntroBox from="movie" data={data} />
+                    <MovieIntroBox from="tv" data={data} />
                 </WrapperBack>
             </Wrapper>
 
@@ -187,7 +187,7 @@ const Detail = ({
                 </Title>
                     <CreditContainer>
                         {topCredits.map(credit => (
-                            <CreditBox>
+                            <CreditBox key={credit.id}>
                                 <a>
                                     <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${credit.profile_path}`}>
                                     </img>
@@ -208,7 +208,7 @@ const Detail = ({
                         추천 작품
                 </Title>
                     <RecommendContainer>
-                        {data.suggestions.map(movie => <RecommendBox from="movie" data={movie}/>)}
+                        {data.tvSuggestions.map(tv => <RecommendBox from="tv" data={tv}/>)}
                     </RecommendContainer>
                     
                 </Column>
@@ -217,13 +217,13 @@ const Detail = ({
                         <Label>
                             원재
                         </Label>
-                        {data.movie.original_title}
+                        {data.tv.original_name}
                     </Wrap>
                     <Wrap>
                         <Label>
                             상태
                         </Label>
-                        {data.movie.status}
+                        {data.tv.status}
                     </Wrap>
                     <Wrap>
                         <Label>
@@ -231,35 +231,19 @@ const Detail = ({
                         </Label>
                         영어
                     </Wrap>
-                    <Wrap>
-                        <Label>
-                            상영시간
-                        </Label>
-                        {data.movie.runtime} 분
-                    </Wrap>
-                    <Wrap>
-                        <Label>
-                            제작비
-                        </Label>
-                        ${addComma(data.movie.budget)}
-                    </Wrap>
-                    <Wrap>
-                        <Label>
-                            수익
-                        </Label>
-                        ${addComma(data.movie.revenue)}
-                    </Wrap>
+                    
+                    
                     <Wrap>
                         <Label>
                             장르
                         </Label>
-                        {data.movie.genres.map(genre => <GenreButton className={classes.button} size="small" variant="outlined">{genre.name}</GenreButton>)}
+                        {data.tv.genres.map(genre => <GenreButton key={genre.id} className={classes.button} size="small" variant="outlined">{genre.name}</GenreButton>)}
                     </Wrap>
                     <Wrap>
                         <Label>
                             키워드
                         </Label>
-                        {data.keywords.map(keyword => <GenreButton className={classes.button} size="small" variant="outlined">{keyword.name}</GenreButton>)}
+                        {data.keywords.map(keyword => <GenreButton key={keyword.id} className={classes.button} size="small" variant="outlined">{keyword.name}</GenreButton>)}
                     </Wrap>
                 </GreyColumn>
             </FlexBox>

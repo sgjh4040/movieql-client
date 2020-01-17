@@ -5,7 +5,9 @@ import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import client from "./apolloClient";
 import Home from "./Home";
 import Detail from "./Routes/Detail/Detail";
-import Drama from "./Routes/Drama/Drama";
+import TvDetail from "./Routes/Detail/TvDetail";
+import Tv from "./Routes/Tv/Tv";
+import PersonDetail from "./Routes/Detail/PersonDetail"
 import GlobalStyles from "./Styles/GlobalStyles";
 import Theme from "./Styles/Theme";
 import styled, { ThemeProvider } from "styled-components";
@@ -30,7 +32,13 @@ class App extends Component {
               <Wrapper>
                 <Route exact={true} path={"/"} component={Home} />
                 <Route path={"/details/:movieId"} component={Detail} />
-                <Route path={"/drama"} component={Drama} />
+                <Route exact={true} path={"/tv"} component={Tv} />
+                <Route path={"/tv/:tvId"} component={TvDetail} />
+                <Route path={"/person/:personId"} component={PersonDetail} />
+                
+                
+                
+                
               </Wrapper>
           </Router>
         </ThemeProvider>

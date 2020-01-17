@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from 'react-apollo-hooks';
-import { NOW_PLAY_MOVIE, MOVIES } from "./queries";
+import { MOVIES } from "./queries";
 import styled from "styled-components";
 import Movie from "./Components/Movie";
 import IconButton from 'material-ui/IconButton';
@@ -30,9 +30,9 @@ const MoviesContainer = styled.div`
 
 const Home = () => {
     const [page, setPage] = useState(1);
-    const [title,setTitle] = useState('현재 상영작')
+    const [title,setTitle] = useState('현재 상영작');
     const [category, setCategory] = useState('now_playing');
-    const [language, setLanguage] = useState('ko-kr')
+    const [language, setLanguage] = useState('ko-kr');
 
     const { data, loading } = useQuery(MOVIES, {
         variables: {
@@ -87,6 +87,7 @@ const Home = () => {
                 <MoviesContainer>
                     {data.movies.map((movie, index) => (
                         <Movie
+                            from="movie"
                             key={index}
                             index
                             id={movie.id}

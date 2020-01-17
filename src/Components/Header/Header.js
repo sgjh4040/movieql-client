@@ -90,7 +90,7 @@ const Header = () =>{
                         영화
             </Category>
                 </Link>
-                <Link to={`/drama`}>
+                <Link to={`/tv`}>
                     <Category>
                         TV프로그램
             </Category>

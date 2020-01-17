@@ -57,13 +57,8 @@ const ReleaseDate = styled.div`
 
 
 const RecommendBox = ({
-    title,
-    id,
-    genre_ids,
-    overview,
-    backdrop_path,
-    release_date,
-    vote_average }) => {
+    from,
+    data }) => {
         const releaseEl = useRef(null);
 
 
@@ -78,29 +73,55 @@ const RecommendBox = ({
             releaseEl.current.hidden=true;
         },[])
 
-    return (
-        <Wrap onMouseOver={presentBox} onMouseLeave={unpresentBox}>
-            <Link to={`/details/${id}`}>
-                <Image src={`https://image.tmdb.org/t/p/w250_and_h141_face${backdrop_path}`} />
-            </Link>
-            <Description>
-                <Title>
-                    {title}
-                </Title>
-                <VoteAverage>
-                    {vote_average}
-                    <StarIcon fontSize="small"/>
-                </VoteAverage>
-                
-            </Description>
-            <Meta ref={releaseEl}>
-                <ReleaseDate >
-                    <DateRangeIcon fontSize="small"/>
-                    {release_date}
-                </ReleaseDate>
-            </Meta>
-        </Wrap>
-    )
+    if(from === "movie"){
+        return (
+            <Wrap onMouseOver={presentBox} onMouseLeave={unpresentBox}>
+                <Link to={`/details/${data.id}`}>
+                    <Image src={`https://image.tmdb.org/t/p/w250_and_h141_face${data.backdrop_path}`} />
+                </Link>
+                <Description>
+                    <Title>
+                        {data.title}
+                    </Title>
+                    <VoteAverage>
+                        {data.vote_average}
+                        <StarIcon fontSize="small"/>
+                    </VoteAverage>
+                    
+                </Description>
+                <Meta ref={releaseEl}>
+                    <ReleaseDate >
+                        <DateRangeIcon fontSize="small"/>
+                        {data.release_date}
+                    </ReleaseDate>
+                </Meta>
+            </Wrap>
+        )
+    }else if (from === "tv"){
+        return (
+            <Wrap onMouseOver={presentBox} onMouseLeave={unpresentBox}>
+                <Link to={`/tv/${data.id}`}>
+                    <Image src={`https://image.tmdb.org/t/p/w250_and_h141_face${data.backdrop_path}`} />
+                </Link>
+                <Description>
+                    <Title>
+                        {data.name}
+                    </Title>
+                    <VoteAverage>
+                        {data.vote_average}
+                        <StarIcon fontSize="small"/>
+                    </VoteAverage>
+                    
+                </Description>
+                <Meta ref={releaseEl}>
+                    <ReleaseDate >
+                        <DateRangeIcon fontSize="small"/>
+                        {data.first_air_date}
+                    </ReleaseDate>
+                </Meta>
+            </Wrap>
+        )
+    }
 }
 
 export default RecommendBox

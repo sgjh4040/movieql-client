@@ -107,45 +107,87 @@ const progressStyle = buildStyles({
   })
 
 
-const MovieIntroBox = ({data}) => {
+const MovieIntroBox = ({from,data}) => {
     console.log(data)
     const [percent,setPercent] = useState(0);
 
        useEffect(()=>{
            console.log("useEffect")
-           setTimeout(()=> setPercent(data.movie.vote_average),100);
+           setTimeout(()=> {
+               if(from==="movie"){
+                setPercent(data.movie.vote_average)
+               }else if(from === "tv"){
+                setPercent(data.tv.vote_average)
+               }
+           },100);
        },[percent])
-    return (
-        <Container>
-            <Section>
-                <Image src={`https://image.tmdb.org/t/p/w500${data.movie.poster_path}`}></Image>
-                <IntroBox>
-                    <div style={{marginBottom:'30px'}}>
-                        <Title>
-                            {data.movie.title}
-                        </Title>
-                        <ReleaseDate>
-                            {`(${data.movie.release_date})`}
-                        </ReleaseDate>
-                    </div>
-                    <div style={{ width: '60px', marginBottom:'30px' }}>
-                    <CircularProgressbar styles={progressStyle} background={true} value={percent} maxValue={10} text={`${percent * 10}%`} />
-                    </div>
-                    <HeaderInfo>
-                        <H2>
-                            개요
-                        </H2>
-                        <Overview>
-                            {data.movie.overview}
-                        </Overview>
 
-                    </HeaderInfo>
-
-                </IntroBox>
-            </Section>
-
-        </Container>
-    )
+       if(from ==="movie"){
+        return (
+            <Container>
+                <Section>
+                    <Image src={`https://image.tmdb.org/t/p/w500${data.movie.poster_path}`}></Image>
+                    <IntroBox>
+                        <div style={{marginBottom:'30px'}}>
+                            <Title>
+                                {data.movie.title}
+                            </Title>
+                            <ReleaseDate>
+                                {`(${data.movie.release_date})`}
+                            </ReleaseDate>
+                        </div>
+                        <div style={{ width: '60px', marginBottom:'30px' }}>
+                        <CircularProgressbar styles={progressStyle} background={true} value={percent} maxValue={10} text={`${percent * 10}%`} />
+                        </div>
+                        <HeaderInfo>
+                            <H2>
+                                개요
+                            </H2>
+                            <Overview>
+                                {data.movie.overview}
+                            </Overview>
+    
+                        </HeaderInfo>
+    
+                    </IntroBox>
+                </Section>
+    
+            </Container>
+        )
+       }else if(from==="tv"){
+        return (
+            <Container>
+                <Section>
+                    <Image src={`https://image.tmdb.org/t/p/w500${data.tv.poster_path}`}></Image>
+                    <IntroBox>
+                        <div style={{marginBottom:'30px'}}>
+                            <Title>
+                                {data.tv.name}
+                            </Title>
+                            <ReleaseDate>
+                                {`(${data.tv.first_air_date})`}
+                            </ReleaseDate>
+                        </div>
+                        <div style={{ width: '60px', marginBottom:'30px' }}>
+                        <CircularProgressbar styles={progressStyle} background={true} value={percent} maxValue={10} text={`${percent * 10}%`} />
+                        </div>
+                        <HeaderInfo>
+                            <H2>
+                                개요
+                            </H2>
+                            <Overview>
+                                {data.tv.overview}
+                            </Overview>
+    
+                        </HeaderInfo>
+    
+                    </IntroBox>
+                </Section>
+    
+            </Container>
+        )
+       }
+    
 }
 
 export default MovieIntroBox;
