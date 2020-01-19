@@ -79,7 +79,6 @@ const Home = () => {
             
           return <div onClick={()=>handleChangePage(current) }>{current}</div>;
         }
-        console.log(element);
         return element;
       };
       

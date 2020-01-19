@@ -160,13 +160,23 @@ export const PERSON_DETAIL = gql`
             gender
             order
             profile_path
+            place_of_birth
+            also_known_as
 
         }
         personTvCredits(id:$personId, language:$language){
             id
+            original_name
+            character
+            first_air_date
+            
+            
         }
         personMovieCredits(id:$personId, language:$language){
             id
+            character
+            title
+            release_date
         }
     }
 `;

@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from 'react-apollo-hooks';
 import { MOVIE_DETAILS } from "../../queries";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Movie from "../../Movie";
 import MovieIntroBox from "../../Components/MovieIntroBox";
 import Button from '@material-ui/core/Button';
@@ -188,10 +189,10 @@ const Detail = ({
                     <CreditContainer>
                         {topCredits.map(credit => (
                             <CreditBox>
-                                <a>
+                                <Link to={`/person/${credit.id}`}>
                                     <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${credit.profile_path}`}>
                                     </img>
-                                </a>
+                                </Link>
                                 <NameBox>
                                     <Name>
                                         {credit.name}
@@ -261,6 +262,7 @@ const Detail = ({
                         </Label>
                         {data.keywords.map(keyword => <GenreButton className={classes.button} size="small" variant="outlined">{keyword.name}</GenreButton>)}
                     </Wrap>
+                    
                 </GreyColumn>
             </FlexBox>
 
