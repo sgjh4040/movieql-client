@@ -14,7 +14,7 @@ const Card = styled.div`
   background-size: cover;
   background-position: center center;
   height: 280px;
-  width: 470px;
+  width: ${props => props.width};
   position: relative;
   margin:5px;
 `;
@@ -32,7 +32,7 @@ const IntroBox = styled.div`
   position:relative;
   flex-direction: column;
   padding: 10px 16px 16px;
-  width: 298px;
+  width: 70%;
 `;
 const IntroHeader = styled.div`
   display:inherit;
@@ -94,7 +94,7 @@ const progressStyle = buildStyles({
   backgroundColor: '#0D1C21',
 })
 
-const Movie = ({from, index, id, title, overview, poster, rating, vote_average, release_date }) => {
+const Movie = ({width='470px',from, index, id, title, overview, poster, rating, vote_average, release_date }) => {
        
        const [percent,setPercent] = useState(0);
 
@@ -119,7 +119,7 @@ const Movie = ({from, index, id, title, overview, poster, rating, vote_average, 
        },[percent])
 
   return (
-    <Card key={index}>
+    <Card key={index} width={width}>
       {poster ? <MovieImage background={`https://image.tmdb.org/t/p/w500${poster}`} />
       : <MovieImage background={noImage}/>}
       

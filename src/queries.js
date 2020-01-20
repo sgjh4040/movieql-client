@@ -2,6 +2,9 @@ import gql from "graphql-tag";
 
 
 
+
+
+
 export const MOVIES = gql`
     query movies($page:Int,$language:String,$category:String){
         movies(page:$page, language:$language, category: $category){
@@ -177,6 +180,34 @@ export const PERSON_DETAIL = gql`
             character
             title
             release_date
+        }
+    }
+`;
+
+export const SEARCH =gql`
+    query search($page:Int,$language:String,$term:String){
+        searchMovies(page:$page, language:$language, term: $term){
+            title
+            id
+            genre_ids
+            overview
+            poster_path
+            vote_average
+            release_date
+        }
+        searchTvs(page:$page, language:$language, term: $term){
+            id
+            name
+            overview
+            vote_average
+            poster_path
+            first_air_date
+            
+        }
+        searchPeoples(page:$page, language:$language, term: $term){
+            id
+            name
+            profile_path
         }
     }
 `;

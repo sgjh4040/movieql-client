@@ -5,6 +5,7 @@ import { PERSON_DETAIL } from "../../queries";
 import { getYear } from "../../util";
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Loader from "../../Components/loader";
 
 const FlexBox = styled.div`
     display:flex;
@@ -131,7 +132,7 @@ const PersonDetail = ({
 
 
     if (loading) {
-        return <div>load</div>
+        return <Loader/>
     }
     console.log(data);
     data.personMovieCredits.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));

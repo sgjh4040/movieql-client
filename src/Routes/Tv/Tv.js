@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useQuery } from 'react-apollo-hooks';
-import { Query } from "react-apollo";
 import styled from "styled-components";
 import { TVs } from "../../queries";
 import Select from '@material-ui/core/Select';

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import useInput from "../../Hooks/useInput";
 // import { Logo } from "../Icons";
 import logo from "../../assets/icons/logo.png";
@@ -64,17 +64,20 @@ const SearchInput = styled.input`
 
 `;
 
-const Header = () =>{
-    const term = useInput('');
+const Header = withRouter(({history}) =>{
+    const search = useInput('');
 
     const onKeyPress = async event =>{
         const { which } = event;
         if(which === 13){
             event.preventDefault();
             try{
-                console.log(term.value);
+                console.log(search.value);
+                history.push(`/search?term=${search.value}`);
             }catch{
 
+            }finally{
+                search.setValue('');
             }
         }
     }
@@ -103,11 +106,11 @@ const Header = () =>{
             </CategoryBox>
         </Container>
         <SearchBox>
-            <SearchInput placeholder={'영화, TV 프로그램, 인물 검색'} {...term} onKeyPress={onKeyPress}/>
+            <SearchInput placeholder={'영화, TV 프로그램, 인물 검색'} {...search} onKeyPress={onKeyPress}/>
         </SearchBox>
     </HeaderBox>
     )
-}
+})
     
 
 

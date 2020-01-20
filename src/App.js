@@ -12,6 +12,7 @@ import GlobalStyles from "./Styles/GlobalStyles";
 import Theme from "./Styles/Theme";
 import styled, { ThemeProvider } from "styled-components";
 import Header from './Components/Header/Header';
+import Search from './Routes/Search/Search';
 
 const Wrapper = styled.div`
   position: relative;
@@ -35,9 +36,7 @@ class App extends Component {
                 <Route exact={true} path={"/tv"} component={Tv} />
                 <Route path={"/tv/:tvId"} component={TvDetail} />
                 <Route path={"/person/:personId"} component={PersonDetail} />
-                
-                
-                
+                <Route path={"/search"} component={Search} />
                 
               </Wrapper>
           </Router>
