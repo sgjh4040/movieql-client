@@ -1,23 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b28bab85e91eb4b69bdd3cb3888e701b",
+    "revision": "9b3c9f50f9cee2437d1a813057ad5c5e",
     "url": "/movieql-client/index.html"
   },
   {
-    "revision": "11f4283a78784fa20612",
+    "revision": "19e73c71ad098062b89a",
     "url": "/movieql-client/static/css/2.3fbfde7e.chunk.css"
   },
   {
-    "revision": "11f4283a78784fa20612",
-    "url": "/movieql-client/static/js/2.4cdc0a87.chunk.js"
+    "revision": "19e73c71ad098062b89a",
+    "url": "/movieql-client/static/js/2.bddf0809.chunk.js"
   },
   {
-    "revision": "f87deb9bc9ac59384762",
-    "url": "/movieql-client/static/js/main.0eba5ca7.chunk.js"
+    "revision": "ed9b14afe0158e6bbd64",
+    "url": "/movieql-client/static/js/main.e7a5915f.chunk.js"
   },
   {
     "revision": "20d09602c1b46f40fe73",
     "url": "/movieql-client/static/js/runtime-main.c3a41de3.js"
+  },
+  {
+    "revision": "42a0148ef12b0886ee49c3c68dd4d376",
+    "url": "/movieql-client/static/media/avatar.42a0148e.png"
   },
   {
     "revision": "c2fdb0f39da02e38b0da5845fc610ae2",
