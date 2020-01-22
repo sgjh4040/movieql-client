@@ -93,6 +93,11 @@ export const MOVIE_DETAILS = gql`
             id
             name
         }
+        videos(id:$movieId){
+            id
+            key
+            name
+        }
     }
 `;
 export const TVs = gql`

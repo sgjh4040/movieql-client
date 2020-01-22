@@ -153,6 +153,11 @@ const RecommendContainer = styled.div`
     box-sizing: border-box;
     padding-bottom: 16px;
 `;
+const Video = styled.iframe`
+    width:440px;
+    height:300px;
+
+`
 
 const Detail = ({
     match: {
@@ -211,7 +216,12 @@ const Detail = ({
                     <RecommendContainer>
                         {data.suggestions.map(movie => <RecommendBox from="movie" data={movie}/>)}
                     </RecommendContainer>
-                    
+                    <Title>
+                        영상
+                </Title>
+                    <RecommendContainer>
+                        {data.videos.map(video => <Video width="220" height="150" src={`https://www.youtube.com/embed/${video.key}`}></Video>)}
+                    </RecommendContainer>
                 </Column>
                 <GreyColumn>
                     <Wrap>
