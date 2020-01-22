@@ -98,11 +98,11 @@ const Header = withRouter(({history}) =>{
                         TV프로그램
             </Category>
                 </Link>
-                <Link to={`/drama`}>
+                {/* <Link to={`/drama`}>
                     <Category>
                         인물
             </Category>
-                </Link>
+                </Link> */}
             </CategoryBox>
         </Container>
         <SearchBox>
