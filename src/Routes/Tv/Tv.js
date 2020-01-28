@@ -38,7 +38,7 @@ const Tv = () => {
     const [category, setCategory] = useState('on_the_air');
     const [language, setLanguage] = useState('ko-kr');
 
-    const { data, loading } = useQuery(TVs, {
+    const { data, loading,error } = useQuery(TVs, {
         variables: {
             page,
             category,
@@ -72,6 +72,8 @@ const Tv = () => {
     }
     if (loading) {
         return <Loader />
+    }else if(error){
+        return "error";
     } else {
 
         return (

@@ -189,7 +189,7 @@ const Detail = ({
                 <Column >
                     <Title>
                         주요 출연진
-                </Title>
+                    </Title>
                     <CreditContainer>
                         {topCredits.map(credit => (
                             <CreditBox>

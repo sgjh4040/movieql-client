@@ -43,7 +43,7 @@ const Home = () => {
     const [language, setLanguage] = useState('ko-kr');
     
 
-    const { data, loading } = useQuery(MOVIES, {
+    const { data, loading,error } = useQuery(MOVIES, {
         variables: {
             page,
             category,
@@ -87,8 +87,10 @@ const Home = () => {
 
     if (loading) {
         return <Loader/>
+    }else if(error){
+        return "error";
     } else {
-        console.log(data);
+        
         return (
             <Wrapper>
                 <Title>

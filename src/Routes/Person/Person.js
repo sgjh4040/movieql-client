@@ -78,7 +78,7 @@ const Charactor = styled.p`
 const Person = () => {
     const [page, setPage] = useState(1);
     const [language, setLanguage] = useState('ko-kr');
-    const { data, loading } = useQuery(PERSON_POPULAR, {
+    const { data, loading,error } = useQuery(PERSON_POPULAR, {
         variables: {
             page,
             language
@@ -88,6 +88,7 @@ const Person = () => {
     if (loading) {
         return <Loader />
     }
+    if (error) return "error";
     console.log(data);
 
     return (

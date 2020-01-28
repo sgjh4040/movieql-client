@@ -198,7 +198,7 @@ export const PERSON_DETAIL = gql`
     }
 `;
 
-export const SEARCH =gql`
+export const SEARCH = gql`
     query search($page:Int,$language:String,$term:String){
         searchMovies(page:$page, language:$language, term: $term){
             title

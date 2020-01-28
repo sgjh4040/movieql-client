@@ -209,7 +209,7 @@ const Detail = ({
                         추천 작품
                 </Title>
                     <RecommendContainer>
-                        {data.tvSuggestions.map(tv => <RecommendBox from="tv" data={tv}/>)}
+                        {data.tvSuggestions.map(tv => <RecommendBox key={tv.id} from="tv" data={tv}/>)}
                     </RecommendContainer>
                     
                 </Column>

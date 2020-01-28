@@ -118,7 +118,7 @@ const PersonDetail = ({
     const [language, setLanguage] = useState('ko-kr');
     const [select, setSelect] = useState('movie');
 
-    const { data, loading } = useQuery(PERSON_DETAIL, {
+    const { data, loading,error } = useQuery(PERSON_DETAIL, {
         variables: {
             personId: parseInt(personId),
             language
@@ -134,6 +134,7 @@ const PersonDetail = ({
     if (loading) {
         return <Loader/>
     }
+    if (error) return "error";
     console.log(data);
     data.personMovieCredits.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
     data.personTvCredits.sort((a, b) => new Date(b.first_air_date) - new Date(a.first_air_date));

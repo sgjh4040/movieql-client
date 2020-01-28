@@ -29,18 +29,18 @@ class App extends Component {
       <ApolloHooksProvider client={client}>
         <ThemeProvider theme={Theme}>
           <Router>
-              <GlobalStyles />
-              <Header></Header>
-              <Wrapper>
-                <Route exact={true} path={"/"} component={Home} />
-                <Route path={"/details/:movieId"} component={Detail} />
-                <Route exact={true} path={"/tv"} component={Tv} />
-                <Route path={"/tv/:tvId"} component={TvDetail} />
-                <Route exact={true} path={"/person"} component={Person} />
-                <Route path={"/person/:personId"} component={PersonDetail} />
-                <Route path={"/search"} component={Search} />
-                
-              </Wrapper>
+            <GlobalStyles />
+            <Header></Header>
+            <Wrapper>
+              <Route exact={true} path={"/"} component={Home} />
+              <Route path={"/details/:movieId"} component={Detail} />
+              <Route exact={true} path={"/tv"} component={Tv} />
+              <Route path={"/tv/:tvId"} component={TvDetail} />
+              <Route exact={true} path={"/person"} component={Person} />
+              <Route path={"/person/:personId"} component={PersonDetail} />
+              <Route path={"/search"} component={Search} />
+
+            </Wrapper>
           </Router>
         </ThemeProvider>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link,withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import useInput from "../../Hooks/useInput";
 // import { Logo } from "../Icons";
 import logo from "../../assets/icons/logo.png";
@@ -64,19 +64,19 @@ const SearchInput = styled.input`
 
 `;
 
-const Header = withRouter(({history}) =>{
+const Header = withRouter(({ history }) => {
     const search = useInput('');
 
-    const onKeyPress = async event =>{
+    const onKeyPress = async event => {
         const { which } = event;
-        if(which === 13){
+        if (which === 13) {
             event.preventDefault();
-            try{
+            try {
                 console.log(search.value);
                 history.push(`/search?term=${search.value}`);
-            }catch{
+            } catch{
 
-            }finally{
+            } finally {
                 search.setValue('');
             }
         }
@@ -85,33 +85,33 @@ const Header = withRouter(({history}) =>{
 
     return (
         <HeaderBox>
-        <Container>
-            <Logo src={logo}/>
-            <CategoryBox>
-                <Link to={`/`}>
-                    <Category>
-                        영화
+            <Container>
+                <Logo src={logo} />
+                <CategoryBox>
+                    <Link to={`/`}>
+                        <Category>
+                            영화
             </Category>
-                </Link>
-                <Link to={`/tv`}>
-                    <Category>
-                        TV프로그램
+                    </Link>
+                    <Link to={`/tv`}>
+                        <Category>
+                            TV프로그램
             </Category>
-                </Link>
-                <Link to={`/person`}>
-                    <Category>
-                        인물
+                    </Link>
+                    <Link to={`/person`}>
+                        <Category>
+                            인물
             </Category>
-                </Link>
-            </CategoryBox>
-        </Container>
-        <SearchBox>
-            <SearchInput placeholder={'영화, TV 프로그램, 인물 검색'} {...search} onKeyPress={onKeyPress}/>
-        </SearchBox>
-    </HeaderBox>
+                    </Link>
+                </CategoryBox>
+            </Container>
+            <SearchBox>
+                <SearchInput placeholder={'영화, TV 프로그램, 인물 검색'} {...search} onKeyPress={onKeyPress} />
+            </SearchBox>
+        </HeaderBox>
     )
 })
-    
+
 
 
 export default Header;
