@@ -7,7 +7,8 @@ import Home from "./Home";
 import Detail from "./Routes/Detail/Detail";
 import TvDetail from "./Routes/Detail/TvDetail";
 import Tv from "./Routes/Tv/Tv";
-import PersonDetail from "./Routes/Detail/PersonDetail"
+import PersonDetail from "./Routes/Detail/PersonDetail";
+import Person from "./Routes/Person/Person";
 import GlobalStyles from "./Styles/GlobalStyles";
 import Theme from "./Styles/Theme";
 import styled, { ThemeProvider } from "styled-components";
@@ -35,6 +36,7 @@ class App extends Component {
                 <Route path={"/details/:movieId"} component={Detail} />
                 <Route exact={true} path={"/tv"} component={Tv} />
                 <Route path={"/tv/:tvId"} component={TvDetail} />
+                <Route exact={true} path={"/person"} component={Person} />
                 <Route path={"/person/:personId"} component={PersonDetail} />
                 <Route path={"/search"} component={Search} />
                 

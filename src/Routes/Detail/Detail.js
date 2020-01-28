@@ -75,8 +75,7 @@ const Title = styled.h1`
     padding-top:40px;
     font-size: 24px;
     margin-bottom: 20px;
-    
-`
+`;
 const GreyColumn = styled.div`
     width: 100%;
     padding: 10px;
@@ -204,7 +203,7 @@ const Detail = ({
                                     </Name>
                                 </NameBox>
                                 <Charactor>
-                                    {credit.charactor}
+                                    {credit.character}
                                 </Charactor>
                             </CreditBox>
                         ))}

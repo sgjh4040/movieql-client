@@ -154,6 +154,15 @@ export const TV_DETAILS = gql`
         }
     }
 `;
+export const PERSON_POPULAR = gql`
+    query personPopular($page:Int,$language:String){
+        personPopular(page: $page, language: $language){
+            id
+            name
+            profile_path
+        }
+    }
+`;
 
 export const PERSON_DETAIL = gql`
     query person($personId:Int!,$language:String){
