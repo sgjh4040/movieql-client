@@ -99,7 +99,7 @@ const Person = () => {
             </Title>
                 <CreditContainer>
                     {data.personPopular.map(person => (
-                        <CreditBox>
+                        <CreditBox key={person.id}>
                             <Link to={`/person/${person.id}`}>
                                 <img src={`https://image.tmdb.org/t/p/w235_and_h235_face${person.profile_path}`}>
                                 </img>

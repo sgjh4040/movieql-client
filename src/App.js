@@ -14,6 +14,7 @@ import Theme from "./Styles/Theme";
 import styled, { ThemeProvider } from "styled-components";
 import Header from './Components/Header/Header';
 import Search from './Routes/Search/Search';
+import Test from './Routes/Test/Test';
 
 const Wrapper = styled.div`
   position: relative;
@@ -39,6 +40,7 @@ class App extends Component {
               <Route exact={true} path={"/person"} component={Person} />
               <Route path={"/person/:personId"} component={PersonDetail} />
               <Route path={"/search"} component={Search} />
+              <Route path={"/test"} component={Test}/>
 
             </Wrapper>
           </Router>
