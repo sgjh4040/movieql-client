@@ -1,10 +1,45 @@
-import React, { useState } from "react";
-import { useQuery } from 'react-apollo-hooks';
-import styled from "styled-components";
+import React from "react";
 
-const Test = () => {
+import Chart from "react-apexcharts";
 
-    return <div>test</div>
+class Charts extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+        
+          series: [{
+            name: 'Series 1',
+            data: [80, 50, 30, 40, 100, 20],
+          }],
+          options: {
+            chart: {
+              height: 350,
+              type: 'radar',
+            },
+            title: {
+              text: 'Basic Radar Chart'
+            },
+            xaxis: {
+              categories: ['January', 'February', 'March', 'April', 'May', 'June']
+            }
+          },
+        
+        
+        };
+      }
+
+      render() {
+        return (
+          
+
+    <div id="chart">
+<Chart options={this.state.options} series={this.state.series} type="radar" height={350} />
+</div>
+  
+
+        );
+      }
 }
 
-export default Test;
+export default Charts;
