@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Chart from "react-apexcharts";
+import useInput from "../../Hooks/useInput";
+import { read } from "fs";
 
 const InfoBox = styled.div`
     display: flex;
@@ -29,9 +31,14 @@ const Profile = styled.div`
 `
 
 const Charts = () => {
+    const speaking = useInput(0);
+    const writing = useInput(0);
+    const listening = useInput(0);
+    const reading = useInput(0);
+    const attendance = useInput(0);
 
     const [series, setSeries] = useState([{
-        name: 'Series 1',
+        name: 'Series',
         data: [80, 50, 30, 40, 100],
     }])
     const [options, setoptions] = useState(
@@ -44,10 +51,30 @@ const Charts = () => {
                 text: '학생 포트폴리오'
             },
             xaxis: {
-                categories: ['Speaking', 'Writing', 'Listening', 'Reading', 'Grammer']
+                categories: ['Speaking', 'Writing', 'Listening', 'Reading', 'Attendance']
+            },
+            yaxis:{
+                min: 0,
+                max:500,
+                labels: {
+                  formatter: function(val, i) {
+                    if (i % 2 === 0) {
+                      return val
+                    } else {
+                      return ''
+                    }
+                  }
+                }
             }
         }
     )
+    const onClick = () => {
+        console.log(speaking);
+        setSeries([{
+            name: 'Series',
+            data: [speaking.value,writing.value,listening.value,reading.value,attendance.value],
+        }])
+    }
     return (
         <div>
             <InfoBox>
@@ -84,6 +111,12 @@ const Charts = () => {
                 </div>
                 </Contents>
             </InfoBox>
+            <input placeholder={'speaking'} onChange={speaking.onChange}></input>
+            <input placeholder={'writing'} onChange={writing.onChange}></input>
+            <input placeholder={'listening'} onChange={listening.onChange}></input>
+            <input placeholder={'reading'} onChange={reading.onChange}></input>
+            <input placeholder={'attendance'} onChange={attendance.onChange}></input>
+            <button onClick={onClick}>클릭</button>
             <Chart options={options} series={series} type="radar" height={350} />
         </div>
     )
